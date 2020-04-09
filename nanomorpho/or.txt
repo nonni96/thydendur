@@ -1,0 +1,16 @@
+orf(a0, a1)
+  {
+    var v2;
+    v2 = a0 || a1;
+    return v2;
+  }
+main()
+{
+    writeln(orf(false, false));
+    writeln("");
+    writeln(orf(false, true));
+    writeln("");
+    writeln(orf(true, false));
+    writeln("");
+    writeln(orf(true, true));
+}

@@ -1,0 +1,7 @@
+function (variable1, variable2) 
+{
+  var variable3, variable4;
+  variable3 = (3 + 4);
+  return variable4;
+}
+

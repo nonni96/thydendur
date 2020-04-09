@@ -1,0 +1,103 @@
+%token <sval> LITERAL,NAME,OP1,OP2,OP3,OP4,OP5,OP6,OP7,VAR,AND,OR,NOT
+%right ASSIGN
+%left AND
+%left OR
+%left NOT
+%left OP1
+%right OP2
+%left OP3
+%left OP4
+%left OP5
+%left OP6
+%left OP7
+%left UNOP
+
+%%
+
+program
+        :       function
+        |       program function
+        
+function
+        :       fundecl '{' decl funbody '}'
+        |       fundecl '{' funbody '}'
+        ;
+
+fundecl
+        :       NAME '(' ')'
+        |       NAME '(' names ')' 
+        ;
+
+names
+        :       NAME
+        |       names ',' NAME 
+        ;
+
+funbody
+        :       expr ';'       
+        |       funbody expr ';'
+        ;
+
+decl
+        :       VAR names ';'   
+        |       decl VAR names ';'
+        ;
+        
+expr
+        :       NAME
+        |       NAME '=' expr %prec ASSIGN
+        |       NAME '(' ')'         
+        |       NAME '(' funargs ')'         
+        |       binopexpr
+        |       boolexpr
+	|	op expr %prec UNOP
+	|	'(' expr ')'
+        |       ifexpr
+        |       'while' '(' expr ')' body
+	|	LITERAL 	
+	;
+
+funargs
+        :       expr            
+        |       funargs ',' expr
+        ;
+
+binopexpr
+        :       expr OP1 expr
+        |       expr OP2 expr
+        |       expr OP3 expr
+        |       expr OP4 expr
+        |       expr OP5 expr
+        |       expr OP6 expr
+        |       expr OP7 expr
+        ;
+
+boolexpr
+        :       expr AND expr
+        |       expr OR expr 
+        |       NOT expr     
+        ;
+
+
+ifexpr
+        :       'if' '(' expr ')' body                 
+        |       'if' '(' expr ')' body 'else' body     
+        |       'if' '(' expr ')' body elsepart        
+        |       'if' '(' expr ')' body elsepart 'else' body
+        ;
+
+elsepart
+        :       'elsif' '(' expr ')' body          
+        |       elsepart 'elsif' '(' expr ')' body 
+        ;
+
+body    :       '{' expressions '}' ;
+
+expressions
+        :       expr ';'             
+        |       expressions expr ';' 
+        ;
+
+op	:	OP1 | OP2 | OP3 | OP4 | OP5 | OP6 | OP7 ;
+
+%%

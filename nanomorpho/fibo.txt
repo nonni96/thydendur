@@ -1,0 +1,47 @@
+fibo1(a0)
+{
+  if (a0 == 0) { return 0; };
+  if (a0 == 1) { return 1; };
+  return fibo1(a0-1) + fibo1(a0-2);
+}
+
+fibo2(a0)
+{
+  var v1;
+  if (a0 == 1) { v1 = 1; }
+  elsif (a0 == 0) { v1 = 0; }
+  else { v1 = fibo2(a0-1) + fibo2(a0-2); };
+  return v1;
+}
+
+fibo3(a0)
+{
+  var prev, curr, next, i;
+  if (a0 == 0) { return 0; };
+  if (a0 == 1) { return 1; };
+  curr = 1;
+  prev = 0;
+  i = 1;
+  while (i < a0)
+  {
+    next = curr + prev;
+    prev = curr;
+    curr = next;
+    i = i+1;
+  };
+  return curr;
+}
+
+main()
+{
+   var i;
+   i = 0;
+   while (i < 10)
+   {
+        writeln(fibo1(i));
+        writeln(fibo2(i));
+        writeln(fibo3(i));
+        writeln("");
+        i = i+1;
+   };
+}

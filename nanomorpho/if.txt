@@ -1,0 +1,75 @@
+if1(a0)
+  {
+    if (a0 < 0)
+    {
+      return 0;
+    };
+    return 1;
+  }
+if2(a2)
+  {
+    if (a2 < 0)
+    {
+      return -1;
+    }
+    elsif (a2 == 0)
+    {
+      return 0;
+    }
+    elsif (a2 > 0)
+    {
+      return 1;
+    }
+    else
+    {
+        return -999;
+    };
+  }
+if3(a0)
+{
+  if (a0 < 0) { return -1; }
+  elsif (a0 == 0) { a0 = 0; }
+  elsif (a0 > 1) { return 1; }
+  elsif (a0 > 10) { a0 = 10; };
+  return a0;
+}
+if4(a0)
+{
+  if (a0 < 0) { return -1; }
+  elsif (a0 == 0) { a0 = 0; }
+  elsif (a0 > 0) { return 1; }
+  elsif (a0 > 10) { a0 = 10; }
+  else { a0 = -999; };
+  return a0;
+}
+main()
+{
+  var i;
+  i = -1;
+  while(i < 2)
+  {
+    writeln(if1(i));
+    i = i+1;
+  };
+  writeln("");
+  i = -1;
+  while(i < 2)
+  {
+    writeln(if2(i));
+    i = i+1;
+  };
+  writeln("");
+  i = -1;
+  while(i < 2)
+  {
+    writeln(if3(i));
+    i = i+1;
+  };
+  writeln("");
+  i = -1;
+  while(i < 2)
+  {
+    writeln(if4(i));
+    i = i+1;
+  };
+}
